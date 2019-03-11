@@ -1,15 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchAllNews } from "../actions";
 import { Card, Icon, Image } from "semantic-ui-react";
 
 import "../components/style.scss";
 
 class itemList extends React.Component {
-  componentDidMount() {
-    this.props.fetchAllNews();
-  }
-
   renderList() {
     return (
       this.props.topNews &&
@@ -37,19 +32,16 @@ class itemList extends React.Component {
   }
 
   render() {
-    console.log(this.props.topNews);
-    return (
-        <div className='row'>{this.renderList()}</div>
-    );
+    return <div className="row">{this.renderList()}</div>;
   }
 }
 
 const mapStateToProps = state => {
-  console.log(state);
-  return { topNews: state.articles.topNews };
+  return {
+    topNews: state.articles.topNews
+  };
 };
 
 export default connect(
-  mapStateToProps,
-  { fetchAllNews }
+  mapStateToProps
 )(itemList);

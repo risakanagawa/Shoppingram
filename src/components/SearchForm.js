@@ -1,6 +1,7 @@
 import React from "react";
-import { Field, reduxForm, getFormValues } from "redux-form";
+import { Field, reduxForm, formValueSelector } from "redux-form";
 import { connect } from "react-redux";
+import { fetchAllNews } from "../actions";
 
 const randomParams = () => {
   let randomParams = [
@@ -19,6 +20,10 @@ const randomParams = () => {
 const randomParam = randomParams();
 
 class SearchFrom extends React.Component {
+  componentDidMount() {
+    this.props.fetchAllNews({ q: randomParam});
+  }
+
   renderInput(props) {
     return (
       <div className="field">
@@ -27,11 +32,13 @@ class SearchFrom extends React.Component {
     );
   }
 
-  onSubmit(e) {
+  onSubmit = e => {
     event.preventDefault();
+    this.props.fetchAllNews({ q: this.props.searchInput });
   }
 
   render() {
+    
     return (
       <form
         onSubmit={this.props.handleSubmit(this.onSubmit)}
@@ -50,11 +57,22 @@ class SearchFrom extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    searchInput: formValueSelector("searchForm")(state, "searchInput")
+  }
+}
+
 // Decorate with reduxForm(). It will read the initialValues prop provided by connect()
-export default reduxForm({
+const preparedSearchForm = reduxForm({
   enableReinitialize: true,
   initialValues: {
     searchInput: randomParam
   },
   form: "searchForm" 
 })(SearchFrom);
+
+export default connect(
+  mapStateToProps,
+  { fetchAllNews }
+)(preparedSearchForm);

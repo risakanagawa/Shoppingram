@@ -10,11 +10,11 @@ class App extends React.Component {
       <div>
         <BrowserRouter>
           <div>
-          <Switch>
+          {/* <Switch> */}
             <HeaderBar />
             <Route path="/" exact component={itemList} />
-            <Route path="/shopping/new" exact component={itemCreate} />
-            </ Switch>
+            <Route path="/new" exact component={itemCreate} />
+            {/* </ Switch> */}
           </div>
         </BrowserRouter>
       </div>

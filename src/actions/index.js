@@ -2,12 +2,12 @@ import axios from "axios";
 
 const url = "https://newsapi.org/v2/everything";
 
-export const fetchAllNews = () => async dispatch => {
+export const fetchAllNews = (options = {}) => async dispatch => {
   const response = await axios.get(url, {
     method: "get",
     params: {
       apiKey: "300771c4c6ef4630aed62aea134ba308",
-      q : ''
+      q : options.q
     }
   });   
   dispatch({ type: "FETCH_ALL_NEWS", payload: response.data.articles });
