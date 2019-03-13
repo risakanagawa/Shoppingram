@@ -17,14 +17,21 @@ class itemList extends React.Component {
         const mm = ("0" + publishedData.getMinutes()).slice(-2);
         const publishedDate = YYYY + "/" + MM + "/" + dd + ", " + hh + ":" + mm;
         return (
-          <Card key={idx}>
-            <Image height="200px" src={news.urlToImage} />
-            <Card.Content>
-              <Card.Header>{news.title}</Card.Header>
-              <Card.Description>{news.description}</Card.Description>
+          <Card key={idx} className='ui-card'>
+            <Card.Content
+              className="card-content"
+              style={{
+                background: `linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),url(${news.urlToImage}) no-repeat center center / cover`,
+              }}
+            >
+              <Card.Header className='card-text-white'>{news.title}</Card.Header>
+              <Card.Description className='card-text-white'>{news.description}</Card.Description>
             </Card.Content>
             <Card.Content extra>{publishedDate}</Card.Content>
             <Card.Content extra>{news.source.name}</Card.Content>
+            <Card.Content extra>
+              <Icon link name="heart outline" />
+            </Card.Content>
           </Card>
         );
       })
@@ -32,7 +39,7 @@ class itemList extends React.Component {
   }
 
   render() {
-    return <div className="row">{this.renderList()}</div>;
+    return <div className="item-list-container row">{this.renderList()}</div>;
   }
 }
 
@@ -42,6 +49,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps
-)(itemList);
+export default connect(mapStateToProps)(itemList);

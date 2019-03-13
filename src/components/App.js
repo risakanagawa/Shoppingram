@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HeaderBar from "./Header";
-import itemCreate from "../contents/itemCreate";
+import itemGenarate from "../contents/itemGenarate";
 import itemList from "../contents/itemList";
+import Footer from './Footer';
 
 class App extends React.Component {
   render() {
@@ -13,10 +14,11 @@ class App extends React.Component {
           {/* <Switch> */}
             <HeaderBar />
             <Route path="/" exact component={itemList} />
-            <Route path="/new" exact component={itemCreate} />
+            <Route path="/new" exact component={itemGenarate} />
             {/* </ Switch> */}
           </div>
         </BrowserRouter>
+        <Footer />
       </div>
     );
   }

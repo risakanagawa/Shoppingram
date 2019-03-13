@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300i,400,700,800,900');
-
 * {
-    font-family: 'Montserrat', sans-serif ;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .row {
@@ -10,11 +9,40 @@
     flex-wrap: wrap;
     width: 100%;
     justify-content: space-evenly;
-  }
-  
-  .column {
+}
+
+.column {
     display: flex;
     flex-direction: column;
     flex-basis: 100%;
     flex: 1;
-  }
+} /// Article cards
+.item-list-container {
+    margin: 20px 0;
+}
+
+.ui.ui-card {
+    height: 400px;
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        background-position: center;
+        background-size: cover;
+        &::after {
+            background: #000 !important;
+            opacity: .8;
+        }
+    }
+    .card-text-white {
+        color: #fff !important;
+    }
+}
+
+.footer {
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    background: antiquewhite;
+}
